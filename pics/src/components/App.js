@@ -10,7 +10,9 @@ class App extends React.Component {
                 Authorization:
                     'Client-ID VTH8T6IulVvZZEA_RPQ9d5y_pwqHNA9BLq89-BGo08A'
             }
-        });
+        }).then((response) => {
+            console.log(response.data.results);
+         });
     };
 
     render() {
