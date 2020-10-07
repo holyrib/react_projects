@@ -1,9 +1,8 @@
 import React, {useState, useEffect, useRef} from "react";
 
-const Dropdown = ( {options, selected, onSelectedChange} ) => {
+const Dropdown = ( {options, selected, onSelectedChange, colorTextChange, colorText} ) => {
     const [open, setOpen] = useState(false);
     const ref = useRef();
-
     useEffect(() => {
         const onBodyClick = (event) => {
             if (ref.current.contains(event.target)) {
@@ -25,27 +24,40 @@ const Dropdown = ( {options, selected, onSelectedChange} ) => {
             <div
                 key={option.value}
                 className='item'
-                onClick={() => onSelectedChange(option)}
+                onClick={() => {
+                    onSelectedChange(option);
+                    colorTextChange(option.value);
+                }}
             >
                 {option.label}
             </div>
         );
     });
+
     return (
-        <div ref={ref} className="ui form">
-            <div className="field">
-                <label className="label">Select a Color</label>
-                <div
-                    onClick={() => setOpen(!open)}
-                    className={`ui selection dropdown ${open ? 'visible active' : ''}`}>
-                    <i className="dropdown icon"></i>
-                    <div className="text">{selected.label}</div>
-                    <div className={`menu ${open ? 'visible transition' : ''}`}>
-                        {renderedOptions}
+        <div>
+            <div ref={ref} className="ui form">
+                <div className="field">
+                    <label className="label">Select a Color</label>
+                    <div
+                        onClick={() => setOpen(!open)}
+                        className={`ui selection dropdown ${open ? 'visible active' : ''}`}>
+                        <i className="dropdown icon"></i>
+                        <div className="text">{selected.label}</div>
+                        <div className={`menu ${open ? 'visible transition' : ''}`}>
+                            {renderedOptions}
+                        </div>
                     </div>
                 </div>
             </div>
+            <div
+                style={{marginTop: '30px', color: colorText}}
+            >
+                Hi there!
+            </div>
         </div>
+
+
     )
 
 };

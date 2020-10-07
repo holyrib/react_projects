@@ -36,6 +36,7 @@ const options = [
 export default () => {
     const [selected, setSelected] = useState(options[0]);
     const [showDropdown, setShowDropdown] = useState(true);
+    const [colorText, setColor] = useState('black');
     return (
         <div>
             <button onClick={() => setShowDropdown(!showDropdown)}>Toggle Dropdown</button>
@@ -44,6 +45,8 @@ export default () => {
                 selected={selected}
                 onSelectedChange={setSelected}
                 options={options}
+                colorText={colorText}
+                colorTextChange={setColor}
             /> : null
             }
         </div>
