@@ -26,7 +26,7 @@ const Dropdown = ( {options, selected, onSelectedChange, colorTextChange, colorT
                 className='item'
                 onClick={() => {
                     onSelectedChange(option);
-                    colorTextChange(option.value);
+                    // colorTextChange(option.value);
                 }}
             >
                 {option.label}
