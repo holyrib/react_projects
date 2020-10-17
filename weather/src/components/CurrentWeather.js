@@ -4,28 +4,27 @@ import OpenWeather from "../apis/OpenWeather";
 const CurrentWeather = () => {
     const [currentWeather, setCurrentWeather] = useState([]);
     useEffect(() => {
+        const getCurrentWeather = async () => {
+            const response = await OpenWeather.get('/weather',{
+                params: {
+                    lat: 43.2220,
+                    lon: 76.8512,
+                },
+            });
+            const weatherInfo = response;
+            console.log(weatherInfo);
+            setCurrentWeather({weatherInfo});
+            console.log(response);
+        };
         getCurrentWeather();
-        console.log(currentWeather)
+        console.log(currentWeather);
     }, []);
 
-    const getCurrentWeather = async (term) => {
-        const response = await OpenWeather.get('/weather',{
-            params: {
-                lat: 43.2220,
-                lon: 76.8512,
-            },
-        });
-        console.log(currentWeather);
-        setCurrentWeather(response.data)
-        console.log(response.data);
-        console.log(currentWeather);
-
-    }
     return (
         <div>
             <div className="ui statistics">
                 <div className="statistic">
-                    {/*{currentWeather.main.temp}*/}
+                    <div className="value">{currentWeather.length}</div>
                 </div>
             </div>
         </div>
